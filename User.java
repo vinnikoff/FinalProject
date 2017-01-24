@@ -1,0 +1,29 @@
+/**
+ * Created by VINNI on 22.01.17.
+ */
+public class User {
+
+    private long id;
+    private String login;
+
+    public User(long id, String login) {
+        this.id = id;
+        this.login = login;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+}
