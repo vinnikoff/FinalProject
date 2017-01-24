@@ -30,9 +30,7 @@ public class User {
         this.login = login;
     }
 
-
-
-
+    
     @Override
     public String toString() {
         return "User{" +

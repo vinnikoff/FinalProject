@@ -105,33 +105,6 @@ public class Room {
         this.idUser = idUser;
     }
 
-   // void bookRoom(long roomId, long userId, long hotelId)
- //   {
-    //    System.out.println("бронирую ...:"+roomId +" "+userId+" "+hotelId);
-   // }
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (o == null)
-            return false;
-        if (o == this)
-            return true;
-        if (getClass() != o.getClass())
-            return false;
-        Room e = (Room) o;
-        return this.id == e.getId() &&
-                this.persons == e.getPersons() &&
-                this.price == e.getPrice() &&
-                this.hotelName.equals(e.getHotelName());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = price;
-        result = 31 * result + persons;
-        result = 31 * result + (cityName != null ? cityName.hashCode() : 0);
-        return result;
-    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -153,11 +126,7 @@ public class Room {
         return Objects.hash(id, idHotel, price, persons, hotelName, cityName, reserve);
     }
 
-    /*@Override
-    public String toString()
-    {
-        return id + " " + price+" "+" "+persons+" "+hotelName+" "+reserve;
-    }*/
+
 
     @Override
     public String toString() {

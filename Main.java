@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 public class Main {
 
     public static void main(String[] args) throws IOException{
-        
+
         int i=0;
 
             DataB data = new DataB();
