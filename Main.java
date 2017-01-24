@@ -10,20 +10,7 @@ import java.io.InputStreamReader;
 public class Main {
 
     public static void main(String[] args) throws IOException{
-
-
-        /*List<User> user = new ArrayList<>();
-        user.add(new User(1, "login1"));
-        user.add(new User(2, "login2"));
-
-        List<Hotel> hotel = new ArrayList<>();
-        hotel.add(new Hotel(1, "cityName1", "hotelName1"));
-        hotel.add(new Hotel(2, "cityName2", "hotelName2"));
-        hotel.add(new Hotel(3, "cityName3", "hotelName1"));
-
-        Map<Integer, Room> room = new HashMap<>();
-        room.put(1, new Room(1, 1, 0, 100, 2, "hotelName1", false));
-        room.put(2, new Room(2, 2, 1, 200, 3, "hotelName2", true));*/
+        
         int i=0;
 
             DataB data = new DataB();
