@@ -27,6 +27,7 @@ public class Main {
         int i=0;
 
             DataB data = new DataB();
+
             Controller controller = new Controller();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             while (i < 100) {
@@ -50,7 +51,16 @@ public class Main {
                         controller.findOperation(inputOperation);
                     else System.out.println("Вы внесли неверное число!");
 
-                } else System.out.println("Вы не зарегистрированы");
+                } else {
+                    System.out.println("Вы не зарегистрированы!");
+                    System.out.println("Для регистрации введите придуманный Вами логин:");
+                    String inputLoginReg;
+                    inputLoginReg = br.readLine();
+                    long k=data.getUser().size()+1;
+                    User user = new User(k, inputLoginReg);
+                    DAO dao = new DAO();
+                    dao.registerUser(user);
+                }
 
             }
                 try {

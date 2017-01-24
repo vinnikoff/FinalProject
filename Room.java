@@ -33,8 +33,6 @@ public class Room {
     }
 
 
-
-
     public long getId() {
         return id;
     }
