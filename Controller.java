@@ -2,10 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
-
 import java.util.*;
 import java.lang.*;
-
 
 
 public class Controller {
@@ -14,8 +12,36 @@ public class Controller {
     private Hotel hotel;
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
     int key1=1;
     int key2=1;
+
+
+    void UserOperation (long userFind) throws IOException {
+        DataB data = new DataB();
+
+        if (userFind > 0) {
+            System.out.println("Какую операцию Вы хотите произвести:\n 1. Забронировать номер (нажмите 1),\n 2. Отменить бронирование (нажмите 2),\n 3. Найти гостиницу по названию(нажмите 3),\n 4. Найти гостиницы в городе(нажмите 4),\n 5. Найти комнаты по параметрам (нажмите 5)\n"
+            );
+            int inputOperation;
+            inputOperation = Integer.valueOf(br.readLine());
+
+            if (inputOperation > 0 && inputOperation < 7)
+                findOperation(inputOperation);
+            else System.out.println("Вы внесли неверное число!");
+
+        } else {
+            System.out.println("Вы не зарегистрированы!");
+            System.out.println("Для регистрации введите придуманный Вами логин:");
+
+            String inputLoginReg;
+            inputLoginReg = br.readLine();
+            long k = data.getUser().size() + 1;
+            User user = new User(k, inputLoginReg);
+            DAO dao = new DAO();
+            dao.registerUser(user);
+        }
+    }
 
 
 void findOperation(int a) {
@@ -162,7 +188,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
         if (key1 == 1) {
             System.out.println("По запрашиваемым данным ничего не найдено");
             key1=1;
-            System.out.println("Вы хотите выполнить ещё одну операцию? (да - 1, нет 2");
+            System.out.println("Вы хотите выполнить ещё одну операцию? (да - 1, нет 2)");
                 int inputOperation;
                 inputOperation = Integer.valueOf(br.readLine());
                 if (inputOperation==2) {
