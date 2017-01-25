@@ -182,16 +182,17 @@ void findOperation(int a) {
 public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
-    try {      // room.bookRoom(inputroomId,inputuserId,inputhotelId);
+    try {
     DataB data = new DataB();
             Set<Map.Entry<Integer, Room>> set = data.maproomout().entrySet();
-
+        DAO dao = new DAO();
             for (Map.Entry<Integer, Room> y: set)
             {
 
                 if (y.getValue().getId()==inputroomId && y.getValue().getIdHotel()==inputhotelId && y.getValue().getReserve()==false){
                     int s= y.getKey();
-                    data.maproomout().put(s, new Room(y.getValue().getId(), y.getValue().getIdHotel(), inputuserId, y.getValue().getPrice(), y.getValue().getPersons(), y.getValue().getHotelName(), true));// можно вынести в DAO
+                    dao.savebookRoom(s, y, inputuserId);
+                   // data.maproomout().put(s, new Room(y.getValue().getId(), y.getValue().getIdHotel(), inputuserId, y.getValue().getPrice(), y.getValue().getPersons(), y.getValue().getHotelName(), true));// можно вынести в DAO
                     key1++;
                     break;
                 }
@@ -243,6 +244,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
             if (y.getValue().getId()==inputroomId && y.getValue().getIdHotel()==inputhotelId && y.getValue().getReserve()==true){
                 int s= y.getKey();
+
                 data.maproomout().put(s, new Room(y.getValue().getId(), y.getValue().getIdHotel(), 0, y.getValue().getPrice(), y.getValue().getPersons(), y.getValue().getHotelName(), false));// можно вынести в DAO
                 key2++;
                 break;
