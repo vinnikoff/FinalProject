@@ -17,30 +17,40 @@ public class Controller {
     int key2=1;
 
 
-    void UserOperation (long userFind) throws IOException {
+    void UserOperation (long userFind) throws IOException, Ex {
         DataB data = new DataB();
+try {
+    if (userFind > 0) {
+        System.out.println("Какую операцию Вы хотите произвести:\n 1. Забронировать номер (нажмите 1),\n 2. Отменить бронирование (нажмите 2),\n 3. Найти гостиницу по названию(нажмите 3),\n 4. Найти гостиницы в городе(нажмите 4),\n 5. Найти комнаты по параметрам (нажмите 5)\n"
+        );
+        int inputOperation;
+        inputOperation = Integer.valueOf(br.readLine());
 
-        if (userFind > 0) {
-            System.out.println("Какую операцию Вы хотите произвести:\n 1. Забронировать номер (нажмите 1),\n 2. Отменить бронирование (нажмите 2),\n 3. Найти гостиницу по названию(нажмите 3),\n 4. Найти гостиницы в городе(нажмите 4),\n 5. Найти комнаты по параметрам (нажмите 5)\n"
-            );
-            int inputOperation;
-            inputOperation = Integer.valueOf(br.readLine());
+        if (inputOperation > 0 && inputOperation < 7)
+            findOperation(inputOperation);
+        else System.out.println("Вы внесли неверное число!");
 
-            if (inputOperation > 0 && inputOperation < 7)
-                findOperation(inputOperation);
-            else System.out.println("Вы внесли неверное число!");
+    } else {
+        System.out.println("Вы не зарегистрированы!");
+        System.out.println("Для регистрации введите придуманный Вами логин:");
 
-        } else {
-            System.out.println("Вы не зарегистрированы!");
-            System.out.println("Для регистрации введите придуманный Вами логин:");
+        String inputLoginReg;
+        inputLoginReg = br.readLine();
+        long k = data.getUser().size() + 1;
+        User user = new User(k, inputLoginReg);
+        DAO dao = new DAO();
+        dao.registerUser(user);
+    }
+}
 
-            String inputLoginReg;
-            inputLoginReg = br.readLine();
-            long k = data.getUser().size() + 1;
-            User user = new User(k, inputLoginReg);
-            DAO dao = new DAO();
-            dao.registerUser(user);
-        }
+catch (NumberFormatException e) {
+
+    System.out.println("Вы внесли неверную информацию (неверный формат данных)!!!");
+    Ex exception = new Ex();
+    throw exception;
+
+}
+
     }
 
 
