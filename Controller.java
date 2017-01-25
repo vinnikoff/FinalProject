@@ -55,6 +55,10 @@ catch (IOException e) {
     System.out.println("Error!!!");
 }
 
+finally {
+    UserOperation(1);
+}
+
     }
 
 
@@ -215,7 +219,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
         if (key1 > 1){
             System.out.println("Забронировано для userId-" + inputuserId + " комнату-" + inputroomId + " в отеле-" + inputhotelId);
         key1=1;
-        System.out.println("Вы хотите выполнить ещё одну операцию? (да - 1, нет 2");
+        System.out.println("Вы хотите выполнить ещё одну операцию? (да - 1, нет 2)");
         int inputOperation;
         inputOperation = Integer.valueOf(br.readLine());
         if (inputOperation==2) {
