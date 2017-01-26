@@ -15,7 +15,6 @@ public class Room {
     private int persons;
     private String hotelName;
     private String cityName;
-    //private String cityName;
     private boolean reserve;
 
 
@@ -61,9 +60,6 @@ public class Room {
         return cityName;
     }
 
-    // public String getCityName() {
-  //      return cityName;
-  //  }
 
     public boolean isReserve() {
         return reserve;
@@ -92,10 +88,6 @@ public class Room {
     public void setHotelName(String hotelName) {
         this.hotelName = hotelName;
     }
-
-//    public void setCityName(String cityName) {
-  //      this.cityName = cityName;
-  //  }
 
     public void setReserve(boolean reserve) {
         this.reserve = reserve;

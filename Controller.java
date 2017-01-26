@@ -7,7 +7,7 @@ import java.lang.*;
 
 
 public class Controller {
-
+    DAO dao = new DAO();
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     int key1=1;
@@ -16,7 +16,7 @@ public class Controller {
 
     void UserOperation (long userFind) throws IOException, Ex {
 
-        DAO dao = new DAO();
+
 try {
     if (userFind > 0) {
         System.out.println("Какую операцию Вы хотите произвести:\n 1. Забронировать номер (нажмите 1),\n 2. Отменить бронирование (нажмите 2),\n 3. Найти гостиницу по названию(нажмите 3),\n 4. Найти гостиницы в городе(нажмите 4),\n 5. Найти комнаты по параметрам (нажмите 5)\n"
@@ -61,7 +61,7 @@ finally {
 
 
 void findOperation(int a) {
-    DAO dao = new DAO();
+
     if (a == 1) {
         System.out.println("Введите roomId");
         try {
@@ -182,7 +182,7 @@ void findOperation(int a) {
 
 }
 public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
-    DAO dao = new DAO();
+
 
     try {
 
@@ -237,7 +237,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
     public void cancelReservation(long inputroomId, long inputuserId, long inputhotelId){
-        DAO dao = new DAO();
+
         Set<Map.Entry<Integer, Room>> set = dao.maproomoutDao().entrySet();
 
         for (Map.Entry<Integer, Room> y: set)
@@ -264,7 +264,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
     public Collection<Hotel> findHotelByName(String inputHotelName){
-        DAO dao = new DAO();
+
         List<Hotel> findhotelbyName = new ArrayList<>();
             findhotelbyName = dao.getHotelDao().stream()
                     .filter(s -> s.getHotelName().equals(inputHotelName))
@@ -273,7 +273,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
     }
 
     public Collection<Hotel> findHotelByCityout(String inputCityName){
-        DAO dao = new DAO();
+
         List<Hotel> findHotelByCityout = new ArrayList<>();
         findHotelByCityout = dao.getHotelDao().stream()
                 .filter(s -> s.getCityName().equals(inputCityName))
@@ -283,7 +283,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
    public Collection<Room> findRoom(Map<String, String> params){
-       DAO dao = new DAO();
+
        List<Room> roomList = new ArrayList<>(dao.maproomoutDao().values());
 
        String inputHotelName = params.get("inputHotelName");
@@ -297,7 +297,6 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
         return findRoom;
     }
-
 
 
 }

@@ -17,7 +17,6 @@ public class Main {
         Controller controller = new Controller();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         List<User> user = new ArrayList<>();
-
         user=dao.getUserDao();
 
         while (i < 100) {
