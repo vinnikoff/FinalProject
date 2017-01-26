@@ -21,12 +21,14 @@ public class DataB{
 
 
     Room room1 = new Room(1, 1, 0, 100, 2, "hotelName1", "cityName1", false);
-    Room room2 = new Room(2, 2, 1, 200, 3, "hotelName2", "cityName1", true);
+    Room room2 = new Room(2, 2, 0, 200, 3, "hotelName2", "cityName2", false);
+    Room room3 = new Room(3, 2, 1, 200, 3, "hotelName2", "cityName1", true);
 
     public Map<Integer, Room> maproomout() {
         Map<Integer, Room> room = new HashMap<>();
         room.put(1, room1);
         room.put(2, room2);
+        room.put(3, room3);
         return room;
     }
 

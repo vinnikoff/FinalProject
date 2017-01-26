@@ -19,6 +19,7 @@ public class Controller {
 
     void UserOperation (long userFind) throws IOException, Ex {
         DataB data = new DataB();
+        DAO dao = new DAO();
 try {
     if (userFind > 0) {
         System.out.println("Какую операцию Вы хотите произвести:\n 1. Забронировать номер (нажмите 1),\n 2. Отменить бронирование (нажмите 2),\n 3. Найти гостиницу по названию(нажмите 3),\n 4. Найти гостиницы в городе(нажмите 4),\n 5. Найти комнаты по параметрам (нажмите 5)\n"
@@ -36,9 +37,9 @@ try {
 
         String inputLoginReg;
         inputLoginReg = br.readLine();
-        long k = data.getUser().size() + 1;
+        long k = dao.getUserDao().size() + 1;
         User user = new User(k, inputLoginReg);
-        DAO dao = new DAO();
+
         dao.registerUser(user);
     }
 }
@@ -63,7 +64,7 @@ finally {
 
 
 void findOperation(int a) {
-
+    DAO dao = new DAO();
     if (a == 1) {
         System.out.println("Введите roomId");
         try {
@@ -166,9 +167,13 @@ void findOperation(int a) {
 
             Collection<Room> findRoom = new ArrayList<>();
             findRoom = findRoom(param);
-            int f= findRoom.size();
-            if (f>0) {System.out.println("Запрашиваемая информация:\n");
-            System.out.println(findRoom);}
+            int VolRoomAll= findRoom.size();
+
+            if (VolRoomAll>0) {
+                System.out.println("По запрашиваемым параметрам найдена информация!");
+                System.out.println("Количество свободных комнат: "+dao.VolReservOut(findRoom)+"\n");
+
+            }
             else System.out.println("По запрашиваемым параметрам гостиницы отсутствуют");
 
             }
@@ -180,12 +185,12 @@ void findOperation(int a) {
 
 }
 public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
-
+    DAO dao = new DAO();
 
     try {
-    DataB data = new DataB();
-            Set<Map.Entry<Integer, Room>> set = data.maproomout().entrySet();
-        DAO dao = new DAO();
+
+            Set<Map.Entry<Integer, Room>> set = dao.maproomoutDao().entrySet();
+
             for (Map.Entry<Integer, Room> y: set)
             {
 
@@ -236,8 +241,8 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
     public void cancelReservation(long inputroomId, long inputuserId, long inputhotelId){
-        DataB data = new DataB();
-        Set<Map.Entry<Integer, Room>> set = data.maproomout().entrySet();
+        DAO dao = new DAO();
+        Set<Map.Entry<Integer, Room>> set = dao.maproomoutDao().entrySet();
 
         for (Map.Entry<Integer, Room> y: set)
         {
@@ -245,7 +250,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
             if (y.getValue().getId()==inputroomId && y.getValue().getIdHotel()==inputhotelId && y.getValue().getReserve()==true){
                 int s= y.getKey();
 
-                data.maproomout().put(s, new Room(y.getValue().getId(), y.getValue().getIdHotel(), 0, y.getValue().getPrice(), y.getValue().getPersons(), y.getValue().getHotelName(), false));// можно вынести в DAO
+                dao.maproomoutDao().put(s, new Room(y.getValue().getId(), y.getValue().getIdHotel(), 0, y.getValue().getPrice(), y.getValue().getPersons(), y.getValue().getHotelName(), false));// можно вынести в DAO
                 key2++;
                 break;
             }
@@ -263,18 +268,18 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
     public Collection<Hotel> findHotelByName(String inputHotelName){
-        DataB data = new DataB();
+        DAO dao = new DAO();
         List<Hotel> findhotelbyName = new ArrayList<>();
-            findhotelbyName = data.getHotel().stream()
+            findhotelbyName = dao.getHotelDao().stream()
                     .filter(s -> s.getHotelName().equals(inputHotelName))
                     .collect(Collectors.toList());
         return findhotelbyName;
     }
 
     public Collection<Hotel> findHotelByCityout(String inputCityName){
-        DataB data = new DataB();
+        DAO dao = new DAO();
         List<Hotel> findHotelByCityout = new ArrayList<>();
-        findHotelByCityout = data.getHotel().stream()
+        findHotelByCityout = dao.getHotelDao().stream()
                 .filter(s -> s.getCityName().equals(inputCityName))
                 .collect(Collectors.toList());
         return findHotelByCityout;
@@ -282,8 +287,8 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
 
    public Collection<Room> findRoom(Map<String, String> params){
-        DataB data = new DataB();
-       List<Room> roomList = new ArrayList<>(data.maproomout().values());
+       DAO dao = new DAO();
+       List<Room> roomList = new ArrayList<>(dao.maproomoutDao().values());
 
        String inputHotelName = params.get("inputHotelName");
        String inputCityName = params.get("inputCityName");
@@ -291,7 +296,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
        int inputPerson = Integer.parseInt(params.get("inputPerson"));
 
 
-       Set<Room> findRoom1 = new HashSet<>();
+      // Set<Room> findRoom1 = new HashSet<>();
 
        List<Room> findRoom = roomList.stream()
                .filter(s -> s.getHotelName().equals(inputHotelName) && s.getCityName().equals(inputCityName) && s.getPrice()==inputPrice && s.getPersons()==inputPerson)
