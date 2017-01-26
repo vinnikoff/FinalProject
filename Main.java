@@ -12,14 +12,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         int i = 0;
-
-        DataB data = new DataB();
+        DAO dao = new DAO();
 
         Controller controller = new Controller();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         List<User> user = new ArrayList<>();
 
-        user=data.getUser();
+        user=dao.getUserDao();
 
         while (i < 100) {
 

@@ -7,9 +7,6 @@ import java.lang.*;
 
 
 public class Controller {
-    private Room room;
-    private Room roomreserv;
-    private Hotel hotel;
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -18,7 +15,7 @@ public class Controller {
 
 
     void UserOperation (long userFind) throws IOException, Ex {
-        DataB data = new DataB();
+
         DAO dao = new DAO();
 try {
     if (userFind > 0) {
@@ -206,7 +203,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
                     System.out.println("Комната уже забронирована");
 
                     break;
-                                    }
+                }
             }
 
         if (key1 == 1) {
@@ -235,7 +232,6 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
 
     catch (IOException e) {
         System.out.println("it is not integer value");}
-
 
     }
 
@@ -294,9 +290,6 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
        String inputCityName = params.get("inputCityName");
        int inputPrice = Integer.parseInt(params.get("inputPrice"));
        int inputPerson = Integer.parseInt(params.get("inputPerson"));
-
-
-      // Set<Room> findRoom1 = new HashSet<>();
 
        List<Room> findRoom = roomList.stream()
                .filter(s -> s.getHotelName().equals(inputHotelName) && s.getCityName().equals(inputCityName) && s.getPrice()==inputPrice && s.getPersons()==inputPerson)
