@@ -9,9 +9,12 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
+        Controller controller = new Controller();
+        controller.Main();
 
-        int i = 0;
+
+        /*int i = 0;
         DAO dao = new DAO();
 
         Controller controller = new Controller();
@@ -43,7 +46,7 @@ public class Main {
             }
         } catch (IOException e) {
             System.out.println("closed is failed");
-        }
+        }*/
 
     }
 

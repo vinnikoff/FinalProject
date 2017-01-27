@@ -13,11 +13,33 @@ public class Controller {
     int key1=1;
     int key2=1;
 
+    void Main () throws IOException{
+
+        List<User> user = new ArrayList<>();
+        user=dao.getUserDao();
+        int i = 0;
+        while (i < 100) {
+
+            if (i == 0) {
+                i++;
+                System.err.println("Введите Ваш логин:");
+
+                String inputLogin;
+                inputLogin = br.readLine();
+
+                long userFind = user.stream()
+                        .filter(s -> s.getLogin().equals(inputLogin)).count();
+
+                UserOperation(userFind);
+            } else UserOperation(1);
+
+        }
+    }
+
 
     void UserOperation (long userFind) throws IOException, Ex {
 
-
-try {
+    try {
     if (userFind > 0) {
         System.out.println("Какую операцию Вы хотите произвести:\n 1. Забронировать номер (нажмите 1),\n 2. Отменить бронирование (нажмите 2),\n 3. Найти гостиницу по названию(нажмите 3),\n 4. Найти гостиницы в городе(нажмите 4),\n 5. Найти комнаты по параметрам (нажмите 5)\n"
         );
@@ -298,6 +320,8 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
         return findRoom;
     }
 
+
+    
 
 }
 
