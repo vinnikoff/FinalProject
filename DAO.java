@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,7 +15,10 @@ public class  DAO implements abstrDAO{
     List<Hotel> daoHotel = data.getHotel();
     Map<Integer, Room> daomaproomout = data.maproomout();
 
-    public void registerUser (User user){
+    public DAO() throws IOException {
+    }
+
+    public void registerUser (User user) throws IOException {
         data.getUser().add(user);
         System.out.println("Спасибо! Вы зарегистрированы!");}
 

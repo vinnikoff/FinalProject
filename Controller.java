@@ -13,6 +13,9 @@ public class Controller {
     int key1=1;
     int key2=1;
 
+    public Controller() throws IOException {
+    }
+
     void Main () throws IOException{
 
         List<User> user = new ArrayList<>();
@@ -321,7 +324,7 @@ public void bookRoom(long inputroomId, long inputuserId, long inputhotelId){
     }
 
 
-    
+
 
 }
 
