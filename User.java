@@ -12,8 +12,6 @@ public class User {
         this.login = login;
     }
 
-    public User (){}
-
     public long getId() {
         return id;
     }
